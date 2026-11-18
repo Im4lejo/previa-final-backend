@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('module_student', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Student::class)
+                ->nullable()
                 ->constrained()
                 ->nullOnDelete();
             $table->foreignIdFor(Module::class)
+                ->nullable()
                 ->constrained()
                 ->nullOnDelete();
             $table->timestamps();

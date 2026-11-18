@@ -59,4 +59,15 @@ class StudentController extends Controller
             'message' => 'Estudiante eliminado correctamente.',
         ], 200);
     }
+    //función post para crear matrículas relación: student-module
+    public function matricular(Request $request, $id)
+    {
+        $student = Student::findOrFail($id);
+
+        $student->modules()->attach($request->module_id);
+
+        return response()->json([
+            'message' => 'Matrícula realizada correctamente'
+        ], 201);
+    }
 }

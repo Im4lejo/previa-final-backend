@@ -58,4 +58,14 @@ class TeacherController extends Controller
             'message' => 'Profesor eliminado correctamente.',
         ], 200);
     }
+    public function matricular(Request $request, $id)
+    {
+        $teacher = Teacher::findOrFail($id);
+
+        $teacher->modules()->attach($request->module_id);
+
+        return response()->json([
+            'message' => 'Matrícula del profesor realizada correctamente'
+        ], 201);
+    }
 }
